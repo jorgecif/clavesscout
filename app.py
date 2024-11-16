@@ -238,6 +238,26 @@ electro_dict = {
     ' ': 0,
 }
 
+badenpowell_dict = {
+    'B': 'P', 
+    'A': 'O', 
+    'D': 'W',     
+    'E': 'E', 
+    'N': 'L', 
+    'P': 'B', 
+    'O': 'A', 
+    'W': 'D', 
+    'E': 'E', 
+    'L': 'N',    
+    ' ': '/',
+
+}
+
+inv_badenpowell_dict= {}
+for key in badenpowell_dict.keys() :
+    val = badenpowell_dict[key]
+    inv_badenpowell_dict[val] = key
+
 # Funciones
 
 # Quitar signos de puntuación 
@@ -326,6 +346,27 @@ def cenitpolar_to_text(text_to_decode):
             text_decoded += char.upper() 
     return text_decoded
 
+# BADEN POWELL
+# Convertir texto a Baden Powell
+def text_to_badenpowell(text_to_encode):
+    text_encoded = ''
+    for char in text_to_encode:
+        if char.upper() in badenpowell_dict:
+            text_encoded += badenpowell_dict[char.upper()]
+        else:
+            text_encoded += char.upper() 
+    return text_encoded
+
+# Convertir Baden Powell a texto
+def badenpowell_to_text(text_to_decode):
+    text_decoded = ''
+    for char in text_to_decode:
+        if char.upper() in inv_badenpowell_dict:
+            text_decoded += inv_badenpowell_dict[char.upper()]
+        else:
+            text_decoded += char.upper() 
+    return text_decoded
+
 # CAJON
 # Convertir texto a cajon
 def text_to_cajon(text_to_encode):
@@ -355,7 +396,7 @@ def text_to_palitos(text_to_encode):
     return URL_images_encoded
 
 
-# 7 CCRUCES
+# 7 CRUCES
 # Convertir texto a 7 ccruces
 def text_to_cruces(text_to_encode):
     URL_images_encoded = []
@@ -401,7 +442,7 @@ st.sidebar.image(image,width=None, use_column_width=None )
 with st.sidebar:
     selected = option_menu(
             menu_title="Claves  Scout",  # required
-            options=["Home", "Morse", "Murciélago", "Cenit Polar", "Cajón", "Palitos", "Electrocardiograma", "7 cruces", "Contacto"],  # required
+            options=["Home", "Morse", "Murciélago", "Cenit Polar", "Cajón", "Palitos", "Electrocardiograma", "7 cruces", "Baden Powell", "Contacto"],  # required
             icons=["house", "caret-right-fill",  "caret-right-fill",  "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill","envelope"],  # optional
             menu_icon="upc-scan",  # optional
             default_index=0,  # optional
@@ -473,6 +514,28 @@ if selected == "Cenit Polar":
             text_output = cenitpolar_to_text(text_input)
             st.write("Texto decodificado:")
             st.write(text_output)
+
+
+if selected == "Baden Powell":
+    st.title(f"Clave {selected}")
+    choice = st.selectbox("Select Translation Direction", ["Text to Baden Powell", "Baden Powell to Text"])
+
+    if choice == "Text to Baden Powell":
+        text_input = st.text_input("Ingrese el texto a codificar")
+        if st.button("Codificar"):
+            text_without_accents=remove_spanish_accents(text_input)
+            text_without_marks=remove_punctuation(text_without_accents)
+            text_output = text_to_badenpowell(text_without_marks)
+            st.write("Texto codificado:")
+            st.write(text_output)
+    elif choice == "Baden Powell to Text":
+        text_input = st.text_input("Ingrese el texto a decodificar")
+        if st.button("Decodificar"):
+            text_output = badenpowell_to_text(text_input)
+            st.write("Texto decodificado:")
+            st.write(text_output)
+
+
 
 if selected == "Cajón":
     st.title(f"Clave {selected}")
