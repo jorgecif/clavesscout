@@ -443,7 +443,7 @@ with st.sidebar:
     selected = option_menu(
             menu_title="Claves  Scout",  # required
             options=["Home", "Morse", "Murciélago", "Cenit Polar", "Cajón", "Palitos", "Electrocardiograma", "7 cruces", "Baden Powell", "Contacto"],  # required
-            icons=["house", "caret-right-fill",  "caret-right-fill",  "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill","envelope"],  # optional
+            icons=["house", "caret-right-fill",  "caret-right-fill",  "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill","envelope"],  # optional
             menu_icon="upc-scan",  # optional
             default_index=0,  # optional
         )
