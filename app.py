@@ -516,26 +516,6 @@ if selected == "Cenit Polar":
             st.write(text_output)
 
 
-if selected == "Baden Powell":
-    st.title(f"Clave {selected}")
-    choice = st.selectbox("Select Translation Direction", ["Text to Baden Powell", "Baden Powell to Text"])
-
-    if choice == "Text to Baden Powell":
-        text_input = st.text_input("Ingrese el texto a codificar")
-        if st.button("Codificar"):
-            text_without_accents=remove_spanish_accents(text_input)
-            text_without_marks=remove_punctuation(text_without_accents)
-            text_output = text_to_badenpowell(text_without_marks)
-            st.write("Texto codificado:")
-            st.write(text_output)
-    elif choice == "Baden Powell to Text":
-        text_input = st.text_input("Ingrese el texto a decodificar")
-        if st.button("Decodificar"):
-            text_output = badenpowell_to_text(text_input)
-            st.write("Texto decodificado:")
-            st.write(text_output)
-
-
 
 if selected == "Cajón":
     st.title(f"Clave {selected}")
@@ -599,12 +579,25 @@ if selected == "7 cruces":
             st.image(text_output, width=40, use_container_width=False)
 
 
-if selected == "opcion2":
-    st.title(f"You have selected {selected}")
+if selected == "Baden Powell":
+    st.title(f"Clave {selected}")
+    choice = st.selectbox("Select Translation Direction", ["Text to Baden Powell", "Baden Powell to Text"])
 
+    if choice == "Text to Baden Powell":
+        text_input = st.text_input("Ingrese el texto a codificar")
+        if st.button("Codificar"):
+            text_without_accents=remove_spanish_accents(text_input)
+            text_without_marks=remove_punctuation(text_without_accents)
+            text_output = text_to_badenpowell(text_without_marks)
+            st.write("Texto codificado:")
+            st.write(text_output)
+    elif choice == "Baden Powell to Text":
+        text_input = st.text_input("Ingrese el texto a decodificar")
+        if st.button("Decodificar"):
+            text_output = badenpowell_to_text(text_input)
+            st.write("Texto decodificado:")
+            st.write(text_output)
 
-if selected == "opcion3":
-    st.title(f"You have selected {selected}")
 
 if selected == "Contacto":
     st.title(f"Créditos y {selected}")
