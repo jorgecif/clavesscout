@@ -437,7 +437,7 @@ def text_to_electro(text_to_encode):
 
 # Logo sidebar
 image =  PIL.Image.open('logoscoutscol.png')
-st.sidebar.image(image,width=None, use_column_width=None )
+st.sidebar.image(image,width=None, use_container_width=None )
 
 with st.sidebar:
     selected = option_menu(
@@ -453,7 +453,7 @@ if selected == "Home":
     st.title("Traductor de claves scout")
     st.write("Esta aplicación te permitirá codificar o traducir texto normal a diferentes claves scout y/o viceversa.")
     image =  PIL.Image.open('cifrado.jpg')
-    st.image(image,width=None, use_column_width=True )
+    st.image(image,width=None, use_container_width=True )
     st.write("Selecciona una clave en el menú de la izquierda para iniciar")
 
 
@@ -549,8 +549,8 @@ if selected == "Cajón":
             text_output = text_to_cajon(text_without_marks)
             st.write("Texto codificado:")
             #st.write(text_output)
-            #st.image(image,width=None, use_column_width=True )
-            st.image(text_output, width=40, use_column_width=False)
+            #st.image(image,width=None, use_container_width=True )
+            st.image(text_output, width=40, use_container_width=False)
 
 if selected == "Palitos":
     st.title(f"Clave {selected}")
@@ -564,8 +564,8 @@ if selected == "Palitos":
             text_output = text_to_palitos(text_without_marks)
             st.write("Texto codificado:")
             #st.write(text_output)
-            #st.image(image,width=None, use_column_width=True )
-            st.image(text_output, width=40, use_column_width=False)
+            #st.image(image,width=None, use_container_width=True )
+            st.image(text_output, width=40, use_container_width=False)
 
 if selected == "Electrocardiograma":
     st.title(f"Clave {selected}")
@@ -595,8 +595,8 @@ if selected == "7 cruces":
             text_output = text_to_cruces(text_without_marks)
             st.write("Texto codificado:")
             #st.write(text_output)
-            #st.image(image,width=None, use_column_width=True )
-            st.image(text_output, width=40, use_column_width=False)
+            #st.image(image,width=None, use_container_width=True )
+            st.image(text_output, width=40, use_container_width=False)
 
 
 if selected == "opcion2":
