@@ -634,7 +634,7 @@ st.sidebar.image(image,width=None, use_container_width=None )
 with st.sidebar:
     selected = option_menu(
             menu_title="Claves  Scout",  # required
-            options=["Home", "Morse", "Murciélago", "Cenit Polar", "Cajón", "Palitos", "Electrocardiograma", "7 cruces", "Baden Powell","Eucalipto",  "Serrucho", "Menotecnica Morse", "Contacto"],  # required
+            options=["Home", "Morse", "Murciélago", "Cenit Polar", "Cajón", "Palitos", "Electrocardiograma", "7 cruces", "Baden Powell","Eucalipto",  "Serrucho", "Mnenotecnica Morse", "Contacto"],  # required
             icons=["house", "caret-right-fill",  "caret-right-fill",  "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill","caret-right-fill", "caret-right-fill", "caret-right-fill","caret-right-fill", "caret-right-fill","envelope"],  # optional
             menu_icon="upc-scan",  # optional
             default_index=0,  # optional
@@ -828,7 +828,7 @@ if selected == "Serrucho":
             st.write("Texto decodificado:")
             st.write(text_output)
 
-if selected == "Mnemotecnica Morse":
+if selected == "Mnenotecnica Morse":
     st.title(f"Clave {selected}")
     # Get user input
     choice = st.selectbox("Select Translation Direction", ["Text to Mnemotecnica Morse", "Mnemotecnica Morse to Text"])
