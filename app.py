@@ -33,6 +33,28 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 # Color morado #9b51e0
 
 # Diccionarios
+
+# Eucalipto
+eucalipto_dict = {
+    'E': '1', 
+    'U': '2', 
+    'C': '3', 
+    'A': '4', 
+    'L': '5', 
+    'I': '6', 
+    'P': '7', 
+    'T': '8', 
+    'O': '9', 
+    ' ': '/',
+}
+
+inv_eucalipto_dict= {}
+for key in eucalipto_dict.keys() :
+    val = eucalipto_dict[key]
+    inv_eucalipto_dict[val] = key
+
+
+
 # Morse
 morse_dict = {
     'A': '.-', 
@@ -95,6 +117,7 @@ for key in murcielago_dict.keys() :
     val = murcielago_dict[key]
     inv_murcielago_dict[val] = key
 
+# Cenit Polar
 
 cenitpolar_dict = {
     'C': 'P', 
@@ -113,6 +136,8 @@ inv_cenitpolar_dict= {}
 for key in cenitpolar_dict.keys() :
     val = cenitpolar_dict[key]
     inv_cenitpolar_dict[val] = key
+
+# Cajón
 
 cajon_dict = {
     'A': 'clave_cajon/_a.png', 
@@ -145,6 +170,8 @@ cajon_dict = {
     ' ': 'clave_cajon/_espacio.png',
 }
 
+# Palitos
+
 palitos_dict = {
     'A': 'clave_palitos/_a.png', 
     'B': 'clave_palitos/_b.png', 
@@ -175,6 +202,8 @@ palitos_dict = {
     'Z': 'clave_palitos/_z.png',
     ' ': 'clave_palitos/_espacio.png',
 }
+
+# 7 cruces
 
 cruces_dict = {
     'A': '7cruces/a.png', 
@@ -207,6 +236,8 @@ cruces_dict = {
     ' ': '7cruces/espacio.png',
 }
 
+# Eletro
+
 electro_dict = {
     'A': 27, 
     'B': 26, 
@@ -237,6 +268,9 @@ electro_dict = {
     'Z': 1,
     ' ': 0,
 }
+
+# Baden Powell
+
 
 badenpowell_dict = {
     'B': 'P', 
@@ -278,6 +312,9 @@ def remove_spanish_accents(text):
     normalized_text_2 = normalized_text.replace('-&-','Ñ')	
 
     return normalized_text_2
+
+
+# Funciones por  clave
 
 # MORSE
 # Convertir texto a morse
@@ -434,6 +471,26 @@ def text_to_electro(text_to_encode):
             text_encoded.append(char.upper())
     return text_encoded
 
+# EUCALIPTO
+# Convertir texto a eucalipto
+def text_to_eucalipto(text_to_encode):
+    text_encoded = ''
+    for char in text_to_encode:
+        if char.upper() in eucalipto_dict:
+            text_encoded += eucalipto_dict[char.upper()]
+        else:
+            text_encoded += char.upper() 
+    return text_encoded
+
+# Convertir eucalipto a texto
+def eucalipto_to_text(text_to_decode):
+    text_decoded = ''
+    for char in text_to_decode:
+        if char.upper() in inv_eucalipto_dict:
+            text_decoded += inv_eucalipto_dict[char.upper()]
+        else:
+            text_decoded += char.upper() 
+    return text_decoded
 
 # Logo sidebar
 image =  PIL.Image.open('logoscoutscol.png')
@@ -442,8 +499,8 @@ st.sidebar.image(image,width=None, use_container_width=None )
 with st.sidebar:
     selected = option_menu(
             menu_title="Claves  Scout",  # required
-            options=["Home", "Morse", "Murciélago", "Cenit Polar", "Cajón", "Palitos", "Electrocardiograma", "7 cruces", "Baden Powell", "Contacto"],  # required
-            icons=["house", "caret-right-fill",  "caret-right-fill",  "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill","envelope"],  # optional
+            options=["Home", "Morse", "Murciélago", "Cenit Polar", "Cajón", "Palitos", "Electrocardiograma", "7 cruces", "Baden Powell","Eucalipto", "Contacto"],  # required
+            icons=["house", "caret-right-fill",  "caret-right-fill",  "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill","caret-right-fill", "caret-right-fill", "caret-right-fill","envelope"],  # optional
             menu_icon="upc-scan",  # optional
             default_index=0,  # optional
         )
@@ -598,6 +655,24 @@ if selected == "Baden Powell":
             st.write("Texto decodificado:")
             st.write(text_output)
 
+if selected == "Eucalipto":
+    st.title(f"Clave {selected}")
+    # Get user input
+    choice = st.selectbox("Select Translation Direction", ["Text to Eucalipto", "Eucalipto to Text"])
+    if choice == "Text to Eucalipto":
+        text_input = st.text_input("Ingrese el texto a codificar")
+        if st.button("Codificar"):
+            text_without_accents=remove_spanish_accents(text_input)
+            text_without_marks=remove_punctuation(text_without_accents)
+            eucalipto_output = text_to_eucalipto(text_without_marks)
+            st.write("Texto codificado:")
+            st.write(eucalipto_output)
+    elif choice == "Eucalipto to Text":
+        eucalipto_input = st.text_input("Ingrese el texto a decodificar")
+        if st.button("Decodificar"):
+            text_output = eucalipto_to_text(eucalipto_input)
+            st.write("Texto decodificado:")
+            st.write(text_output)
 
 if selected == "Contacto":
     st.title(f"Créditos y {selected}")
