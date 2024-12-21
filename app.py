@@ -34,27 +34,6 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # Diccionarios
 
-# Eucalipto
-eucalipto_dict = {
-    'E': '1', 
-    'U': '2', 
-    'C': '3', 
-    'A': '4', 
-    'L': '5', 
-    'I': '6', 
-    'P': '7', 
-    'T': '8', 
-    'O': '9', 
-    ' ': '/',
-}
-
-inv_eucalipto_dict= {}
-for key in eucalipto_dict.keys() :
-    val = eucalipto_dict[key]
-    inv_eucalipto_dict[val] = key
-
-
-
 # Morse
 morse_dict = {
     'A': '.-', 
@@ -292,6 +271,112 @@ for key in badenpowell_dict.keys() :
     val = badenpowell_dict[key]
     inv_badenpowell_dict[val] = key
 
+
+# Eucalipto
+eucalipto_dict = {
+    'E': '1', 
+    'U': '2', 
+    'C': '3', 
+    'A': '4', 
+    'L': '5', 
+    'I': '6', 
+    'P': '7', 
+    'T': '8', 
+    'O': '9', 
+    ' ': '/',
+}
+
+inv_eucalipto_dict= {}
+for key in eucalipto_dict.keys() :
+    val = eucalipto_dict[key]
+    inv_eucalipto_dict[val] = key
+
+
+
+# Serrucho
+serrucho_dict = {
+    'A': 'ʌɅ', 
+    'B': 'Ʌʌʌʌ', 
+    'C': 'ɅʌɅʌ', 
+    'D': 'Ʌʌʌ', 
+    'E': 'ʌ', 
+    'F': 'ʌʌɅʌ', 
+    'G': 'ɅɅʌ', 
+    'H': 'ʌʌʌʌ', 
+    'I': 'ʌʌ', 
+    'J': 'ʌɅɅɅ', 
+    'K': 'ɅʌɅ', 
+    'L': 'ʌɅʌʌ', 
+    'M': 'ɅɅ', 
+    'N': 'Ʌʌ', 
+    'O': 'ɅɅɅ', 
+    'P': 'ʌɅɅʌ', 
+    'Q': 'ɅɅʌɅ', 
+    'R': 'ʌɅʌ', 
+    'S': 'ʌʌʌ', 
+    'T': 'Ʌ', 
+    'U': 'ʌʌɅ', 
+    'V': 'ʌʌʌɅ', 
+    'W': 'ʌɅɅ', 
+    'X': 'ɅʌʌɅ', 
+    'Y': 'ɅʌɅɅ', 
+    'Z': 'ɅɅʌʌ',
+    '0': 'ɅɅɅɅɅ',
+    '1': 'ʌɅɅɅɅ',
+    '2': 'ʌʌɅɅɅ',
+    '3': 'ʌʌʌɅɅ',
+    '4': 'ʌʌʌʌɅ',
+    '5': 'ʌʌʌʌʌ',
+    '6': 'Ʌʌʌʌʌ',
+    '7': 'ɅɅʌʌʌ',
+    '8': 'ɅɅɅʌʌ',
+    '9': 'ɅɅɅɅʌ',
+    ' ': '/',
+}
+
+# Mnemotécnica Morse
+mnemotecnica_dict = {
+    'A': 'asno', 
+    'B': 'bonaparte', 
+    'C': 'cocacola', 
+    'D': 'docena', 
+    'E': 'el', 
+    'F': 'fumarola', 
+    'G': 'gondola', 
+    'H': 'himalaya', 
+    'I': 'iris', 
+    'J': 'jabonoso', 
+    'K': 'kohinor', 
+    'L': 'limonada', 
+    'M': 'moto', 
+    'N': 'noche',
+    'Ñ': 'ñoñopatoso',  
+    'O': 'oporto', 
+    'P': 'pisotones', 
+    'Q': 'qocorico', 
+    'R': 'ramona', 
+    'S': 'sardina', 
+    'T': 'tos', 
+    'U': 'unico', 
+    'V': 'ventilador', 
+    'W': 'wagonpost', 
+    'X': 'Xochimilco', 
+    'Y': 'yositomo', 
+    'Z': 'zocoyula',
+    '0': '0',
+    '1': '1',
+    '2': '2',
+    '3': '3',
+    '4': '4',
+    '5': '5',
+    '6': '6',
+    '7': '7',
+    '8': '8',
+    '9': '9',
+    ' ': ' ',
+}
+
+
 # Funciones
 
 # Quitar signos de puntuación 
@@ -492,6 +577,56 @@ def eucalipto_to_text(text_to_decode):
             text_decoded += char.upper() 
     return text_decoded
 
+
+# SERRUCHO
+# Convertir texto a serrucho
+def text_to_serrucho(text):
+    text_encoded = ''
+    for char in text:
+        if char.upper() in serrucho_dict:
+            text_encoded += serrucho_dict[char.upper()] + ' '
+        else:
+            text_encoded += char
+    return text_encoded
+
+# Convertir serrucho a texto
+def serrucho_to_text(serrucho_text):
+    text = ''
+    serrucho_list = serrucho_text.split(' ')
+    for serrucho_char in serrucho_list:
+        for key, value in serrucho_dict.items():
+            if value == serrucho_char:
+                text += key
+                break
+        else:
+            text += serrucho_char
+    return text
+
+# MNEMOTECNICA MORSE
+# Convertir texto a MNEMOTECNICA MORSE
+def text_to_mnemotecnica(text):
+    text_encoded = ''
+    for char in text:
+        if char.upper() in mnemotecnica_dict:
+            text_encoded += mnemotecnica_dict[char.upper()] + ' '
+        else:
+            text_encoded += char
+    return text_encoded
+
+# Convertir mnemotecnica morse a texto
+def mnemotecnica_to_text(mnemotecnica_text):
+    text = ''
+    mnemotecnica_list = mnemotecnica_text.split(' ')
+    for mnemotecnica_char in mnemotecnica_list:
+        for key, value in mnemotecnica_dict.items():
+            if value == mnemotecnica_char:
+                text += key
+                break
+        else:
+            text += mnemotecnica_char
+    return text
+
+
 # Logo sidebar
 image =  PIL.Image.open('logoscoutscol.png')
 st.sidebar.image(image,width=None, use_container_width=None )
@@ -499,8 +634,8 @@ st.sidebar.image(image,width=None, use_container_width=None )
 with st.sidebar:
     selected = option_menu(
             menu_title="Claves  Scout",  # required
-            options=["Home", "Morse", "Murciélago", "Cenit Polar", "Cajón", "Palitos", "Electrocardiograma", "7 cruces", "Baden Powell","Eucalipto", "Contacto"],  # required
-            icons=["house", "caret-right-fill",  "caret-right-fill",  "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill","caret-right-fill", "caret-right-fill", "caret-right-fill","envelope"],  # optional
+            options=["Home", "Morse", "Murciélago", "Cenit Polar", "Cajón", "Palitos", "Electrocardiograma", "7 cruces", "Baden Powell","Eucalipto",  "Serrucho", "Menotecnica Morse", "Contacto"],  # required
+            icons=["house", "caret-right-fill",  "caret-right-fill",  "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill","caret-right-fill", "caret-right-fill", "caret-right-fill","caret-right-fill", "caret-right-fill","envelope"],  # optional
             menu_icon="upc-scan",  # optional
             default_index=0,  # optional
         )
@@ -673,6 +808,44 @@ if selected == "Eucalipto":
             text_output = eucalipto_to_text(eucalipto_input)
             st.write("Texto decodificado:")
             st.write(text_output)
+
+if selected == "Serrucho":
+    st.title(f"Clave {selected}")
+    # Get user input
+    choice = st.selectbox("Select Translation Direction", ["Text to Serrucho", "Serrucho to Text"])
+    if choice == "Text to Serrucho":
+        text_input = st.text_input("Ingrese el texto a codificar")
+        if st.button("Codificar"):
+            text_without_accents=remove_spanish_accents(text_input)
+            text_without_marks=remove_punctuation(text_without_accents)
+            serrucho_output = text_to_serrucho(text_without_marks)
+            st.write("Texto codificado:")
+            st.write(serrucho_output)
+    elif choice == "Serrucho to Text":
+        serrucho_input = st.text_input("Ingrese el texto a decodificar")
+        if st.button("Decodificar"):
+            text_output = serrucho_to_text(serrucho_input)
+            st.write("Texto decodificado:")
+            st.write(text_output)
+
+if selected == "Mnemotecnica Morse":
+    st.title(f"Clave {selected}")
+    # Get user input
+    choice = st.selectbox("Select Translation Direction", ["Text to Mnemotecnica Morse", "Mnemotecnica Morse to Text"])
+    if choice == "Text to Mnemotecnica Morse":
+        text_input = st.text_input("Ingrese el texto a codificar")
+        if st.button("Codificar"):
+            text_without_accents=remove_spanish_accents(text_input)
+            text_without_marks=remove_punctuation(text_without_accents)
+            mnemotecnica_output = text_to_mnemotecnica(text_without_marks)
+            st.write("Texto codificado:")
+            st.write(mnemotecnica_output)
+    elif choice == "Mnemotecnica Morse to Text":
+        mnemotecnica_input = st.text_input("Ingrese el texto a decodificar")
+        if st.button("Decodificar"):
+            text_output = mnemotecnica_to_text(mnemotecnica_input)
+            st.write("Texto decodificado:")
+            st.write(text_output)            
 
 if selected == "Contacto":
     st.title(f"Créditos y {selected}")
