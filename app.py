@@ -729,13 +729,24 @@ with st.sidebar:
 
 
 if selected == "Home":
-    st.title("Traductor de claves scout")
+    # Anuncio destacado
+
     st.write("Esta aplicación te permitirá codificar o traducir texto normal a diferentes claves scout y/o viceversa.")
-    image =  PIL.Image.open('cifrado.jpg')
-    st.image(image,width=None, use_container_width=True )
+
+    image = Image.open('cifrado.jpg')
+    st.image(image, use_container_width=True)
+
     st.write("Selecciona una clave en el menú de la izquierda para iniciar")
-
-
+    st.markdown(
+        """
+        <div style='background-color:#fff8b3; padding: 12px; border-radius: 8px; text-align: center; border: 1px solid #f0d000;'>
+            <span style="font-size:18px; color:#333333;">
+                🔐 ¡Nueva clave disponible! Ya puedes utilizar la <strong style="color:#d10000;">Clave Sombra</strong> en el menú de la izquierda.
+            </span>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 if selected == "Morse":
     st.title(f"Clave {selected}")
@@ -951,7 +962,7 @@ if selected == "Código Sombra":
         Este sistema fue diseñado como una herramienta lúdica para aprender codificación visual.
                     
         <br>            
-        <b>Tomado del Libro "El Idioma de los Espías" de Martin Gardner</b>
+        <b>Tomado del Libro  **"El Idioma de los Espías"** de Martin Gardner</b>
         <br>    
 
         """, unsafe_allow_html=True)
