@@ -938,15 +938,15 @@ if selected == "Código Sombra":
     st.title(f"Clave {selected}")
     with st.expander("¿Qué es la clave sombra?"):
         st.markdown("""
-        La **clave sombra** es un sistema de codificación en el que cada letra del alfabeto se representa mediante una imagen. 
+        La **clave sombra** es un sistema de codificación en el que cada letra del alfabeto se representa mediante un símbolo. 
         Adicionalmente, se pueden insertar **"giros"** en posiciones específicas del mensaje, los cuales alteran la orientación 
         del "papel" y dificultan la lectura para quienes no conocen la clave.<br>
 
-        - Cada imagen representa una letra.
-        - Se puede girar el papel en ciertos puntos del mensaje (90°, 180°, 270°).
-        - El receptor necesita saber dónde están los giros para poder decodificar correctamente el mensaje.
+        - Cada símbolo representa una letra.
+        - Existen 4 símbolos especiales de giro que pueden insertarse en cualquier parte del mensaje y lo que indicarán es que a partir de ese símbolo el papel debe girarse 90, 180 o 270 grados. 
+        - Para decodificar el mensaje, cada vez que aparezca un símbolo de giro el receptor deberá girar la hoja a la posición indicada.
 
-        🔐 **Ejemplo**: Si giras el papel a 90° después de la letra 3, las siguientes letras aparecerán rotadas.
+        🔐 **Ejemplo**: Si aparece el símbolo de giro 1, deberás girar el papel a 90° para decodificar los siguientes símbolos, los cuales ahora aparecerán rotados.
 
         Este sistema fue diseñado como una herramienta lúdica para aprender codificación visual.
                     
