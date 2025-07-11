@@ -952,14 +952,8 @@ if selected == "Código Sombra":
         El **Código Sombra** es un sistema de codificación en el que cada letra del alfabeto se representa mediante un símbolo. 
         Adicionalmente, se pueden insertar **"giros"** en posiciones específicas del mensaje, los cuales alteran la orientación 
         del "papel" y dificultan la lectura para quienes no conocen el código.<br>
-
-        - Cada símbolo representa una letra.
-        - Existen 4 símbolos especiales de giro que pueden insertarse en cualquier parte del mensaje y lo que indicarán es que a partir de ese símbolo el papel debe girarse 90, 180 o 270 grados. 
-        - Para decodificar el mensaje, cada vez que aparezca un símbolo de giro el receptor deberá girar la hoja a la posición indicada.
-
-        🔐 **Ejemplo**: Si aparece el símbolo de giro 1, deberás girar el papel a 90° para decodificar los siguientes símbolos, los cuales ahora aparecerán rotados.<br>            
+        🔐 **Ejemplo**: Si aparece el símbolo de giro 1, deberás girar el papel a 90° para decodificar los siguientes símbolos.<br>            
         Tomado del Libro  **El Idioma de los Espías** de Martin Gardner<br>    
-
         """, unsafe_allow_html=True)
         col1, col2 = st.columns(2)
         with col1:
@@ -969,27 +963,16 @@ if selected == "Código Sombra":
             st.markdown("""
             Cada línea del interior de un símbolo extra es un indicador que señala si 
             la parte superior del papel debe estar para arriba, para abajo, para la izquierda o para la derecha. 
-            Por ejemplo, si aparece el símbolo extra 3, el papel debe ponerse cabeza abajo. 
-            El símbolo 2 significa que la página debe girarse de modo que su borde superior quede hacia la derecha. 
-            El símbolo 4 te dice que debes girar la hoja para que su borde superior quede a la izquierda. 
-            El primer símbolo extra señala que el papel debe quedar en posición normal, es decir con el borde superior hacia arriba.
              """, unsafe_allow_html=True)
 
         col1, col2 = st.columns(2)
         with col1:
             st.image("clave_sombra/ejemplo.png", caption="Ejemplo: ESTOY EN PELIGRO SOCORRO", use_container_width=True)
-
         with col2:
             st.markdown("""
-            El primer símbolo señala que debes dar a la página un cuarto de giro antes de decodificar 
-            los cuatro símbolos que siguen. Después llegas a otro símbolo extra que te indica que debes 
-            restituir la pági-na a la posición normal hasta que llegues al siguiente símbolo extra. 
             Este constante giro de la página, en tanto la clave alfabética permanece siempre en la misma posición, 
             es una “vuelta” novedosa que hace más confuso el código para cualquier enemigo que pueda interceptarlo.
-
              """, unsafe_allow_html=True)
-
-
 
     # Get user input
     choice = st.selectbox("Select Translation Direction", ["Text to Sombra"])
@@ -998,34 +981,36 @@ if selected == "Código Sombra":
         Ngiros_input = st.slider("Ingrese el número de giros del papel", 0, 10, 1)
 
         if text_input:
-            # Limpieza del texto
             text_without_accents = remove_spanish_accents(text_input)
             text_without_marks = remove_punctuation(text_without_accents)
-            texto_limpio = text_without_marks.replace(" ", "")  # opcionalmente puedes dejar los espacios
+            texto_limpio = text_without_marks.replace(" ", "")
             num_letras = len(texto_limpio)
 
             if Ngiros_input >= num_letras:
                 st.error("El número de giros debe ser menor que la cantidad de letras del texto ingresado.")
             else:
-                # Generación de las posiciones
-                st.subheader("Selecciona la posición para insertar cada giro")
+                st.subheader("Selecciona la posición y el valor de cada giro")
+                col_pos, col_giro = st.columns(2)
                 posiciones = []
-                inicio = 1  # posición mínima permitida (entre la primera y segunda letra)
+                lista_giros = []
+                inicio = 1
 
                 for i in range(Ngiros_input):
-                    opciones = list(range(inicio, num_letras))  # posiciones posibles
-                    pos = st.selectbox(f"Posición del giro #{i + 1}", opciones, key=f"giro_{i}")
-                    posiciones.append(pos)
-                    inicio = pos + 1  # asegura que las siguientes posiciones sean posteriores
+                    with col_pos:
+                        opciones = list(range(inicio, num_letras))
+                        pos = st.selectbox(f"Posición #{i + 1}", opciones, key=f"pos_{i}")
+                        posiciones.append(pos)
+                        inicio = pos + 1
+
+                    with col_giro:
+                        giro = st.selectbox(f"Giro #{i + 1}", [0, 90, 180, 270], key=f"giro_{i}")
+                        lista_giros.append(giro)
 
                 if st.button("Codificar"):
-                    lista_giros = random.choices([0, 90, 180, 270], k=Ngiros_input)
-                    st.write("Giros generados:", lista_giros)
-                    st.write("Posiciones seleccionadas:", posiciones)
+                    #st.write("Giros seleccionados:", lista_giros)
+                    #st.write("Posiciones seleccionadas:", posiciones)
 
                     text_output = text_to_sombra(text_without_marks, posiciones, lista_giros)
-
-
                     st.write("Texto codificado:")
                     st.image(text_output, width=40, use_container_width=False)
 
