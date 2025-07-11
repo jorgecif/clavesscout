@@ -741,7 +741,7 @@ if selected == "Home":
         """
         <div style='background-color:#fff8b3; padding: 12px; border-radius: 8px; text-align: center; border: 1px solid #f0d000;'>
             <span style="font-size:18px; color:#333333;">
-                🔐 ¡Nueva clave disponible! Ya puedes utilizar la <strong style="color:#d10000;">Clave Sombra</strong> en el menú de la izquierda.
+                🔐 ¡Nueva clave disponible! Ya puedes utilizar el <strong style="color:#d10000;">Código Sombra</strong> en el menú de la izquierda.
             </span>
         </div>
         """,
