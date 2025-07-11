@@ -947,7 +947,7 @@ if selected == "Mnenotecnica Morse":
 
 if selected == "Código Sombra":
     st.title(f"Clave {selected}")
-    with st.expander("¿Qué es la clave sombra?"):
+    with st.expander("¿Qué es el Código Sombra?"):
         st.markdown("""
         La **clave sombra** es un sistema de codificación en el que cada letra del alfabeto se representa mediante un símbolo. 
         Adicionalmente, se pueden insertar **"giros"** en posiciones específicas del mensaje, los cuales alteran la orientación 
