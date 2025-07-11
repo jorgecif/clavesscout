@@ -957,11 +957,8 @@ if selected == "Código Sombra":
         - Existen 4 símbolos especiales de giro que pueden insertarse en cualquier parte del mensaje y lo que indicarán es que a partir de ese símbolo el papel debe girarse 90, 180 o 270 grados. 
         - Para decodificar el mensaje, cada vez que aparezca un símbolo de giro el receptor deberá girar la hoja a la posición indicada.
 
-        🔐 **Ejemplo**: Si aparece el símbolo de giro 1, deberás girar el papel a 90° para decodificar los siguientes símbolos, los cuales ahora aparecerán rotados.
-                   
-        <br>            
-        Tomado del Libro  **El Idioma de los Espías** de Martin Gardner
-        <br>    
+        🔐 **Ejemplo**: Si aparece el símbolo de giro 1, deberás girar el papel a 90° para decodificar los siguientes símbolos, los cuales ahora aparecerán rotados.<br>            
+        Tomado del Libro  **El Idioma de los Espías** de Martin Gardner<br>    
 
         """, unsafe_allow_html=True)
         col1, col2 = st.columns(2)
