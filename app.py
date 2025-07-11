@@ -5,6 +5,9 @@ import unicodedata
 import string
 import matplotlib.pyplot as plt
 import numpy as np
+import random
+from PIL import Image
+
 
 
 
@@ -214,6 +217,45 @@ cruces_dict = {
     'Z': '7cruces/z.png',
     ' ': '7cruces/espacio.png',
 }
+
+sombra_dict = {
+    'A': 'clave_sombra/_a.png', 
+    'B': 'clave_sombra/_b.png', 
+    'C': 'clave_sombra/_c.png',     
+    'D': 'clave_sombra/_d.png', 
+    'E': 'clave_sombra/_e.png', 
+    'F': 'clave_sombra/_f.png', 
+    'G': 'clave_sombra/_g.png', 
+    'H': 'clave_sombra/_h.png', 
+    'I': 'clave_sombra/_i.png', 
+    'J': 'clave_sombra/_j.png',    
+    'K': 'clave_sombra/_k.png',
+    'L': 'clave_sombra/_l.png', 
+    'M': 'clave_sombra/_m.png', 
+    'N': 'clave_sombra/_n.png', 
+    'Ñ': 'clave_sombra/_nn.png',    
+    'O': 'clave_sombra/_o.png',
+    'P': 'clave_sombra/_p.png', 
+    'Q': 'clave_sombra/_q.png', 
+    'R': 'clave_sombra/_r.png', 
+    'S': 'clave_sombra/_s.png',    
+    'T': 'clave_sombra/_t.png',
+    'U': 'clave_sombra/_u.png', 
+    'V': 'clave_sombra/_v.png', 
+    'W': 'clave_sombra/_w.png', 
+    'X': 'clave_sombra/_x.png',    
+    'Y': 'clave_sombra/_y.png',
+    'Z': 'clave_sombra/_z.png',
+    ' ': 'clave_sombra/_espacio.png',
+}
+
+giros_dict = {
+    90: "clave_sombra/_90.png",
+    180: "clave_sombra/_180.png",
+    270: "clave_sombra/_270.png",
+    0: "clave_sombra/_0.png"  
+}
+
 
 # Eletro
 
@@ -532,6 +574,51 @@ def text_to_cruces(text_to_encode):
 
     return URL_images_encoded
 
+# SOMBRA
+# Convertir texto a sombra
+def text_to_sombra(text_to_encode, posiciones, giros): 
+    """
+    Convierte el texto a código sombra e inserta imágenes de giros en posiciones específicas.
+
+    Args:
+        text_to_encode (str): Texto limpio a codificar.
+        posiciones (list): Lista de posiciones (enteros) donde insertar los giros.
+        giros (list): Lista de valores de giros (ej: [90, 180, 270]).
+        sombra_dict (dict): Diccionario de letras a imágenes.
+        giros_dict (dict): Diccionario de grados de giro a imágenes.
+
+    Returns:
+        list: Secuencia de imágenes (URL o paths) codificadas con giros insertados.
+    """
+    resultado = []
+    idx_giro = 0
+    letra_idx = 0
+    giro_actual = 0  # empieza en 0
+
+    total_len = len(text_to_encode) + len(posiciones)
+
+    for i in range(total_len):
+        if idx_giro < len(posiciones) and i == posiciones[idx_giro]:
+            giro_actual = giros[idx_giro]
+            ruta_giro = giros_dict.get(giro_actual)
+            if ruta_giro:
+                img_giro = Image.open(ruta_giro)
+                resultado.append(img_giro)
+            idx_giro += 1
+        else:
+            char = text_to_encode[letra_idx].upper()
+            ruta_letra = sombra_dict.get(char)
+            if ruta_letra:
+                img_letra = Image.open(ruta_letra)
+                img_rotada = img_letra.rotate(giro_actual, expand=True)
+                resultado.append(img_rotada)
+            else:
+                resultado.append(char)  # si no hay imagen, lo deja como texto
+            letra_idx += 1
+
+    return resultado
+
+
 # ELECTROCARDIOGRAMA
 # Convertir texto a electrocardiograma
 def text_to_electro(text_to_encode):
@@ -634,8 +721,8 @@ st.sidebar.image(image,width=None, use_container_width=None )
 with st.sidebar:
     selected = option_menu(
             menu_title="Claves  Scout",  # required
-            options=["Home", "Morse", "Murciélago", "Cenit Polar", "Cajón", "Palitos", "Electrocardiograma", "7 cruces", "Baden Powell","Eucalipto",  "Serrucho", "Mnenotecnica Morse", "Contacto"],  # required
-            icons=["house", "caret-right-fill",  "caret-right-fill",  "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill","caret-right-fill", "caret-right-fill", "caret-right-fill","caret-right-fill", "caret-right-fill","envelope"],  # optional
+            options=["Home", "Morse", "Murciélago", "Cenit Polar", "Cajón", "Palitos", "Electrocardiograma", "7 cruces", "Baden Powell","Eucalipto",  "Serrucho", "Mnenotecnica Morse", "Código Sombra","Contacto"],  # required
+            icons=["house", "caret-right-fill",  "caret-right-fill",  "caret-right-fill", "caret-right-fill", "caret-right-fill", "caret-right-fill","caret-right-fill", "caret-right-fill", "caret-right-fill","caret-right-fill", "caret-right-fill", "caret-right-fill","envelope"],  # optional
             menu_icon="upc-scan",  # optional
             default_index=0,  # optional
         )
@@ -812,7 +899,7 @@ if selected == "Eucalipto":
 if selected == "Serrucho":
     st.title(f"Clave {selected}")
     # Get user input
-    choice = st.selectbox("Select Translation Direction", ["Text to Serrucho", "Serrucho to Text"])
+    choice = st.selectbox("Select Translation Direction", ["Text to Serrucho","Serrucho to Text"])
     if choice == "Text to Serrucho":
         text_input = st.text_input("Ingrese el texto a codificar")
         if st.button("Codificar"):
@@ -846,6 +933,95 @@ if selected == "Mnenotecnica Morse":
             text_output = mnemotecnica_to_text(mnemotecnica_input)
             st.write("Texto decodificado:")
             st.write(text_output)            
+
+if selected == "Código Sombra":
+    st.title(f"Clave {selected}")
+    with st.expander("¿Qué es la clave sombra?"):
+        st.markdown("""
+        La **clave sombra** es un sistema de codificación en el que cada letra del alfabeto se representa mediante una imagen. 
+        Adicionalmente, se pueden insertar **"giros"** en posiciones específicas del mensaje, los cuales alteran la orientación 
+        del "papel" y dificultan la lectura para quienes no conocen la clave.<br>
+
+        - Cada imagen representa una letra.
+        - Se puede girar el papel en ciertos puntos del mensaje (90°, 180°, 270°).
+        - El receptor necesita saber dónde están los giros para poder decodificar correctamente el mensaje.
+
+        🔐 **Ejemplo**: Si giras el papel a 90° después de la letra 3, las siguientes letras aparecerán rotadas.
+
+        Este sistema fue diseñado como una herramienta lúdica para aprender codificación visual.
+                    
+        <br>            
+        <b>Tomado del Libro "El Idioma de los Espías" de Martin Gardner</b>
+        <br>    
+
+        """, unsafe_allow_html=True)
+        col1, col2 = st.columns(2)
+        with col1:
+            st.image("clave_sombra/alfabeto.png", caption="Alfabeto", use_container_width=True)
+            st.image("clave_sombra/modificadores.png", caption="Símbolos de giro")
+        with col2:
+            st.markdown("""
+            Cada línea del interior de un símbolo extra es un indicador que señala si 
+            la parte superior del papel debe estar para arriba, para abajo, para la izquierda o para la derecha. 
+            Por ejemplo, si aparece el símbolo extra 3, el papel debe ponerse cabeza abajo. 
+            El símbolo 2 significa que la página debe girarse de modo que su borde superior quede hacia la derecha. 
+            El símbolo 4 te dice que debes girar la hoja para que su borde superior quede a la izquierda. 
+            El primer símbolo extra señala que el papel debe quedar en posición normal, es decir con el borde superior hacia arriba.
+             """, unsafe_allow_html=True)
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.image("clave_sombra/ejemplo.png", caption="Ejemplo: ESTOY EN PELIGRO SOCORRO", use_container_width=True)
+
+        with col2:
+            st.markdown("""
+            El primer símbolo señala que debes dar a la página un cuarto de giro antes de decodificar 
+            los cuatro símbolos que siguen. Después llegas a otro símbolo extra que te indica que debes 
+            restituir la pági-na a la posición normal hasta que llegues al siguiente símbolo extra. 
+            Este constante giro de la página, en tanto la clave alfabética permanece siempre en la misma posición, 
+            es una “vuelta” novedosa que hace más confuso el código para cualquier enemigo que pueda interceptarlo.
+
+             """, unsafe_allow_html=True)
+
+
+
+    # Get user input
+    choice = st.selectbox("Select Translation Direction", ["Text to Sombra"])
+    if choice == "Text to Sombra":
+        text_input = st.text_input("Ingrese el texto a codificar")
+        Ngiros_input = st.slider("Ingrese el número de giros del papel", 0, 10, 1)
+
+        if text_input:
+            # Limpieza del texto
+            text_without_accents = remove_spanish_accents(text_input)
+            text_without_marks = remove_punctuation(text_without_accents)
+            texto_limpio = text_without_marks.replace(" ", "")  # opcionalmente puedes dejar los espacios
+            num_letras = len(texto_limpio)
+
+            if Ngiros_input >= num_letras:
+                st.error("El número de giros debe ser menor que la cantidad de letras del texto ingresado.")
+            else:
+                # Generación de las posiciones
+                st.subheader("Selecciona la posición para insertar cada giro")
+                posiciones = []
+                inicio = 1  # posición mínima permitida (entre la primera y segunda letra)
+
+                for i in range(Ngiros_input):
+                    opciones = list(range(inicio, num_letras))  # posiciones posibles
+                    pos = st.selectbox(f"Posición del giro #{i + 1}", opciones, key=f"giro_{i}")
+                    posiciones.append(pos)
+                    inicio = pos + 1  # asegura que las siguientes posiciones sean posteriores
+
+                if st.button("Codificar"):
+                    lista_giros = random.choices([0, 90, 180, 270], k=Ngiros_input)
+                    st.write("Giros generados:", lista_giros)
+                    st.write("Posiciones seleccionadas:", posiciones)
+
+                    text_output = text_to_sombra(text_without_marks, posiciones, lista_giros)
+
+
+                    st.write("Texto codificado:")
+                    st.image(text_output, width=40, use_container_width=False)
 
 if selected == "Contacto":
     st.title(f"Créditos y {selected}")
