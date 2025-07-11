@@ -949,7 +949,7 @@ if selected == "Código Sombra":
     st.title(f"Clave {selected}")
     with st.expander("¿Qué es el Código Sombra?"):
         st.markdown("""
-        La **clave sombra** es un sistema de codificación en el que cada letra del alfabeto se representa mediante un símbolo. 
+        El **Código Sombra** es un sistema de codificación en el que cada letra del alfabeto se representa mediante un símbolo. 
         Adicionalmente, se pueden insertar **"giros"** en posiciones específicas del mensaje, los cuales alteran la orientación 
         del "papel" y dificultan la lectura para quienes no conocen la clave.<br>
 
@@ -962,7 +962,7 @@ if selected == "Código Sombra":
         Este sistema fue diseñado como una herramienta lúdica para aprender codificación visual.
                     
         <br>            
-        <b>Tomado del Libro  **"El Idioma de los Espías"** de Martin Gardner</b>
+        Tomado del Libro  **"El Idioma de los Espías"** de Martin Gardner
         <br>    
 
         """, unsafe_allow_html=True)
