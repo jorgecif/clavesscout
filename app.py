@@ -835,7 +835,7 @@ if selected == "Palitos":
             st.write("Texto codificado:")
             #st.write(text_output)
             #st.image(image,width=None, use_container_width=True )
-            st.image(text_output, width=40, use_container_width=False)
+            st.image(text_output, width=40)
 
 if selected == "Electrocardiograma":
     st.title(f"Clave {selected}")
@@ -866,7 +866,7 @@ if selected == "7 cruces":
             st.write("Texto codificado:")
             #st.write(text_output)
             #st.image(image,width=None, use_container_width=True )
-            st.image(text_output, width=40, use_container_width=False)
+            st.image(text_output, width=40)
 
 
 if selected == "Baden Powell":
