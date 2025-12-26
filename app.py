@@ -734,7 +734,7 @@ if selected == "Home":
     st.write("Esta aplicación te permitirá codificar o traducir texto normal a diferentes claves scout y/o viceversa.")
 
     image = Image.open('cifrado.jpg')
-    st.image(image, use_container_width=True)
+    st.image(image, width="stretch")
 
     st.write("Selecciona una clave en el menú de la izquierda para iniciar")
     st.markdown(
