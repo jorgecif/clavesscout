@@ -1033,7 +1033,6 @@ Tomado del Libro **El Idioma de los Espías** de Martin Gardner
                     text_output = text_to_sombra(text_without_marks, posiciones, lista_giros)
                     st.write("Texto codificado:")
                     st.image(text_output, width=40)
-
 if selected == "Contacto":
     st.title(f"Créditos y {selected}")
     st.subheader("Esta aplicación ha sido desarrollada por Jorge O. Cifuentes (Águila Vigilante)")
