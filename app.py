@@ -716,7 +716,7 @@ def mnemotecnica_to_text(mnemotecnica_text):
 
 # Logo sidebar
 image =  PIL.Image.open('logoscoutscol.png')
-st.sidebar.image(image,width="stretch" )
+st.sidebar.image(image,width="stretch")
 
 with st.sidebar:
     selected = option_menu(
@@ -734,7 +734,7 @@ if selected == "Home":
     st.write("Esta aplicación te permitirá codificar o traducir texto normal a diferentes claves scout y/o viceversa.")
 
     image = Image.open('cifrado.jpg')
-    st.image(image, width=True)
+    st.image(image, width='stretch')
 
     st.write("Selecciona una clave en el menú de la izquierda para iniciar")
     st.markdown(
@@ -819,7 +819,7 @@ if selected == "Cajón":
             text_output = text_to_cajon(text_without_marks)
             st.write("Texto codificado:")
             #st.write(text_output)
-            #st.image(image,width=None, width=True )
+            #st.image(image,width=None, use_container_width=True )
             st.image(text_output, width=40)
 
 if selected == "Palitos":
@@ -834,7 +834,7 @@ if selected == "Palitos":
             text_output = text_to_palitos(text_without_marks)
             st.write("Texto codificado:")
             #st.write(text_output)
-            #st.image(image,width=None, width=True )
+            #st.image(image,width=None, use_container_width=True )
             st.image(text_output, width=40)
 
 if selected == "Electrocardiograma":
@@ -865,7 +865,7 @@ if selected == "7 cruces":
             text_output = text_to_cruces(text_without_marks)
             st.write("Texto codificado:")
             #st.write(text_output)
-            #st.image(image,width=None, width=True )
+            #st.image(image,width=None, use_container_width=True )
             st.image(text_output, width=40)
 
 
@@ -966,7 +966,7 @@ Tomado del Libro **El Idioma de los Espías** de Martin Gardner
                     """, unsafe_allow_html=True)
         col1, col2 = st.columns(2)
         with col1:
-            st.image("clave_sombra/alfabeto.png", caption="Alfabeto", width=True)
+            st.image("clave_sombra/alfabeto.png", caption="Alfabeto", width='stretch')
             st.image("clave_sombra/modificadores.png", caption="Símbolos de giro")
         with col2:
             st.markdown("""
@@ -980,7 +980,7 @@ Tomado del Libro **El Idioma de los Espías** de Martin Gardner
 
         col1, col2 = st.columns(2)
         with col1:
-            st.image("clave_sombra/ejemplo.png", caption="Ejemplo: ESTOY EN PELIGRO SOCORRO", width=True)
+            st.image("clave_sombra/ejemplo.png", caption="Ejemplo: ESTOY EN PELIGRO SOCORRO", width='stretch')
         with col2:
             st.markdown("""
             El primer símbolo señala que debes dar a la página un cuarto de 
@@ -1033,6 +1033,7 @@ Tomado del Libro **El Idioma de los Espías** de Martin Gardner
                     text_output = text_to_sombra(text_without_marks, posiciones, lista_giros)
                     st.write("Texto codificado:")
                     st.image(text_output, width=40)
+
 if selected == "Contacto":
     st.title(f"Créditos y {selected}")
     st.subheader("Esta aplicación ha sido desarrollada por Jorge O. Cifuentes (Águila Vigilante)")
