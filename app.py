@@ -866,7 +866,7 @@ if selected == "7 cruces":
             st.write("Texto codificado:")
             #st.write(text_output)
             #st.image(image,width=None, width=True )
-            st.image(text_output, width=40, width=False)
+            st.image(text_output, width=40)
 
 
 if selected == "Baden Powell":
