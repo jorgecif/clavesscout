@@ -716,7 +716,7 @@ def mnemotecnica_to_text(mnemotecnica_text):
 
 # Logo sidebar
 image =  PIL.Image.open('logoscoutscol.png')
-st.sidebar.image(image,width="stretch", use_container_width=None )
+st.sidebar.image(image,width="stretch" )
 
 with st.sidebar:
     selected = option_menu(
