@@ -150,6 +150,16 @@ cajon_dict = {
     'Y': 'clave_cajon/_y.png',
     'Z': 'clave_cajon/_z.png',
     ' ': 'clave_cajon/_espacio.png',
+    '0': 'clave_cajon/_espacio.png',
+    '1': 'clave_cajon/_espacio.png',
+    '2': 'clave_cajon/_espacio.png',
+    '3': 'clave_cajon/_espacio.png',
+    '4': 'clave_cajon/_espacio.png',
+    '5': 'clave_cajon/_espacio.png',
+    '6': 'clave_cajon/_espacio.png',
+    '7': 'clave_cajon/_espacio.png',
+    '8': 'clave_cajon/_espacio.png',
+    '9': 'clave_cajon/_espacio.png',
 }
 
 # Palitos
@@ -183,6 +193,16 @@ palitos_dict = {
     'Y': 'clave_palitos/_y.png',
     'Z': 'clave_palitos/_z.png',
     ' ': 'clave_palitos/_espacio.png',
+    '0': 'clave_cajon/_espacio.png',
+    '1': 'clave_cajon/_espacio.png',
+    '2': 'clave_cajon/_espacio.png',
+    '3': 'clave_cajon/_espacio.png',
+    '4': 'clave_cajon/_espacio.png',
+    '5': 'clave_cajon/_espacio.png',
+    '6': 'clave_cajon/_espacio.png',
+    '7': 'clave_cajon/_espacio.png',
+    '8': 'clave_cajon/_espacio.png',
+    '9': 'clave_cajon/_espacio.png',
 }
 
 # 7 cruces
@@ -216,6 +236,16 @@ cruces_dict = {
     'Y': '7cruces/y.png',
     'Z': '7cruces/z.png',
     ' ': '7cruces/espacio.png',
+    '0': 'clave_cajon/_espacio.png',
+    '1': 'clave_cajon/_espacio.png',
+    '2': 'clave_cajon/_espacio.png',
+    '3': 'clave_cajon/_espacio.png',
+    '4': 'clave_cajon/_espacio.png',
+    '5': 'clave_cajon/_espacio.png',
+    '6': 'clave_cajon/_espacio.png',
+    '7': 'clave_cajon/_espacio.png',
+    '8': 'clave_cajon/_espacio.png',
+    '9': 'clave_cajon/_espacio.png',
 }
 
 sombra_dict = {
@@ -247,6 +277,16 @@ sombra_dict = {
     'Y': 'clave_sombra/_y.png',
     'Z': 'clave_sombra/_z.png',
     ' ': 'clave_sombra/_espacio.png',
+    '0': 'clave_cajon/_espacio.png',
+    '1': 'clave_cajon/_espacio.png',
+    '2': 'clave_cajon/_espacio.png',
+    '3': 'clave_cajon/_espacio.png',
+    '4': 'clave_cajon/_espacio.png',
+    '5': 'clave_cajon/_espacio.png',
+    '6': 'clave_cajon/_espacio.png',
+    '7': 'clave_cajon/_espacio.png',
+    '8': 'clave_cajon/_espacio.png',
+    '9': 'clave_cajon/_espacio.png',
 }
 
 giros_dict = {
